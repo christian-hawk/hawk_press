@@ -1,0 +1,36 @@
+<%- include("partials/header") %>
+<%- include("partials/homenavbar")%>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome!</h1>
+            <p class="lead">This is a simple HawkPress blog</p>
+            <hr class="my-4">
+            <p>It was made using Express</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+          </div>
+        <% articles.forEach(article => { %> 
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= article.slug %>" class="btn btn-info">Ler artigo</a>
+                </div>
+            </div>  
+            <br>
+        <% }) %>
+
+        <div class="row">
+            <div class="col col-12">
+                <a href="/articles/page/2" style="float:right">Next >>></a>
+            </div>
+            
+            <hr>
+        </div>
+        <hr>>
+    </div>
+</body>
+<%- include("partials/footer") %>

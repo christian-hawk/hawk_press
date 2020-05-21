@@ -1,0 +1,39 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %> 
+    
+<div class="container">
+    <hr>
+    <h2>Usuários</h2>
+    <hr>
+    <a class="btn btn-info" href="/admin/users/create" role="button">New User</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %> 
+            <tr>
+                <th><%= user.email %></th>
+                
+                <th>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/users/edit/<%= user.id%>">Edit</a>
+                        <a class="dropdown-item" href="/categories/delete?id=<%= user.id %>" onclick="confirmDelete(event, this)">Delete</a>
+                      </div>
+                </th>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    
+</div>
+
+<%- include("../../partials/footer") %>

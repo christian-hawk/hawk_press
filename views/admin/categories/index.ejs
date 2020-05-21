@@ -1,0 +1,51 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
+<div class="container">
+    <hr>
+    <h2>Categorias</h2>
+    <hr>
+    <a class="btn btn-info" href="/admin/categories/new" role="button">New Category</a>
+    <button type="button" class="btn btn-info" href="/admin/categories/new">New Category</button>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(category => { %> 
+            <tr>
+                <th><%= category.id %></th>
+                <th><%= category.title %></th>
+                <th><%= category.slug %></th>
+                <th>
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/categories/edit/<%= category.id%>">Edit</a>
+                        <a class="dropdown-item" href="/categories/delete?id=<%= category.id %>" onclick="confirmDelete(event, this)">Delete</a>
+                      </div>
+                </th>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include("../../partials/footer") %>
+<script>
+    function confirmDelete(event, a){
+        confirm("Do you wanna delete this category?");
+        if(c){
+            return true
+        } else {
+            event.preventDefault();
+        }
+    }
+    
+</script>
