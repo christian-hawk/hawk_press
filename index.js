@@ -6,10 +6,14 @@ const connection = require("./database/database")
 const categoriesController = require("./categories/CategoriesController")
 const articlesController = require("./articles/ArticlesController")
 const usersController = require("./users/UsersController")
-
+const fs = require('fs')
 const Article = require("./articles/Article")
 const Category = require("./categories/Category")
 const User = require("./users/User")
+const https = require('https')
+const passport = require('passport')
+
+
 // View Engine EJS
 app.set('view engine','ejs')
 
@@ -22,6 +26,9 @@ app.use(session({
     }
 
 }))
+
+
+
 
 // Static
 app.use(express.static('public'))
@@ -113,6 +120,9 @@ app.get("/category/:slug", (req, res) => {
     })
 })
 
-app.listen(5040, () => {
-    console.log("Servidor rodando...")
-})
+
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert:  fs.readFileSync('./cert.pem'),
+    passphrase: 'Test123$'
+},app).listen(5040,()=>{console.log("server listening on port 5040")})
